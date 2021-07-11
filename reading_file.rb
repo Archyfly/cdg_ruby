@@ -54,8 +54,8 @@ def view_menu
     #file_for_write =  "results.txt"
     choice = gets.chomp
     break if choice == '-1'
-    if input_age.include?(choice)
-      puts "Выбор по этому году уже проводился."
+    if input_age.include?(choice) || choice == ""
+      puts "Пустой ввод или выбор по этому году уже проводился."
       next
     else
       read_file('students.txt', choice)
