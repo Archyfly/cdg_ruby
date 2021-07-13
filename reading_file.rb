@@ -3,7 +3,7 @@
 AGES = (17..99).freeze
 
 def compare_files
-  return File.read("students.txt").size == File.read("results.txt").size
+  File.read('students.txt').size == File.read('results.txt').size
 end
 
 def read_file(str, age)
@@ -19,14 +19,14 @@ def read_file(str, age)
   end
   puts "Записей добавлено: #{count}"
   arr_to_insert.each do |line|
-    string_for_write = line + "\n"
+    string_for_write = line + '\n'
     write_to_results(string_for_write)
   end
   file.close
 end
 
 def write_to_results(string_for_write)
-  file = File.open("results.txt", "a+")
+  file = File.open('results.txt', 'a+')
   file.write(string_for_write)
   file.close
 end
@@ -38,22 +38,24 @@ end
 
 def view_menu
   input_age = []
-  if File.exist?("results.txt")
-    file = File.open("results.txt", "w")
+  if File.exist?('results.txt')
+    file = File.open('results.txt', 'w')
     file.close
   else
-    File.new("results.txt")
+    File.new('results.txt')
   end
   loop do
     break if compare_files == true
+
     list
     choice = gets.chomp
     break if choice == '-1'
-    if input_age.include?(choice) || choice == ""
-      puts "Пустой ввод или выбор по этому году уже проводился."
+
+    if input_age.include?(choice) || choice == ''
+      puts 'Пустой ввод или выбор по этому году уже проводился.'
       next
-    elsif !(AGES.include?(choice.to_i))
-      puts "Некорректный ввод. Введите значение от 17 до 99"
+    elsif !AGES.include?(choice.to_i)
+      puts 'Некорректный ввод. Введите значение от 17 до 99'
       next
     else
       read_file('students.txt', choice)
@@ -61,7 +63,7 @@ def view_menu
     input_age.push(choice)
   end
   puts "Из предоставленного списка перенесены записи, соответствующие возрастам #{input_age}."
-  file = File.open("results.txt")
+  file = File.open('results.txt')
   file_data = file.readlines
   puts file_data
 end
