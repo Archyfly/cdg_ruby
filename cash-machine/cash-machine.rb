@@ -21,3 +21,4 @@ class CashMachine
     @balance >= amount
   end
 end
+
