@@ -52,6 +52,35 @@ class PostsController
   end
 end
 
+class CommentsController
+  extend Resource
+
+  def initialize
+    @comments = []
+  end
+
+  def index
+    #puts 'index'
+    @comments.each { |comment| puts comment }
+  end
+
+  def show
+    puts 'show'
+  end
+
+  def create
+    puts 'create'
+  end
+
+  def update
+    puts 'update'
+  end
+
+  def destroy
+    puts 'destroy'
+  end
+end
+
 class Router
   def initialize
     @routes = {}
