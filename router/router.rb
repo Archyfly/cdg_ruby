@@ -28,7 +28,7 @@ class PostsController
   extend Resource
 
   def initialize
-    @posts = []
+    @posts = ['First post', 'Second post', 'Third post', 'Fourth post']
   end
 
   def index
@@ -38,28 +38,42 @@ class PostsController
   end
 
   def show
-    puts "Please input post id:"
+    puts 'Please input post id:'
     post_id = gets.chomp.to_i
-    if @posts.include?(post_id)
+    if @posts[post_id] != nil
       puts @posts[post_id]
     else
-      puts "Post with id = #{post_id} not found"
+      puts 'Post not found'
     end
   end
 
   def create
-    puts "Please input post id:"
-    post_id = gets.chomp.to_i
-    puts @posts[post_id]
+    puts 'Enter body of your post:'
+    post = gets.chomp
+    @posts.push(post)
   end
 
   def update
-    puts 'update post'
+    @posts.each_with_index do |post, index|
+      puts "#{index} : #{post}"
+    end
+    puts 'Please input post id for update:'
+    post_id = gets.chomp.to_i
+    puts 'Please input updated post:'
+    post_body = gets.chomp.to_str
+    @posts[post_id] = post_body
   end
 
   def destroy
-    puts 'destroy post'
+    puts 'Please input post id for DELETE:'
+    post_id = gets.chomp.to_i
+    if @posts[post_id] != nil
+      @posts.delete_at(post_id)
+    else
+      puts 'Post not found'
+    end
   end
+
 end
 
 class CommentsController
@@ -130,3 +144,4 @@ end
 router = Router.new
 
 router.init
+
