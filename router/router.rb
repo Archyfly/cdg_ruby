@@ -32,23 +32,23 @@ class PostsController
   end
 
   def index
-    puts 'index'
+    puts 'index posts'
   end
 
   def show
-    puts 'show'
+    puts 'show post'
   end
 
   def create
-    puts 'create'
+    puts 'create post'
   end
 
   def update
-    puts 'update'
+    puts 'update post'
   end
 
   def destroy
-    puts 'destroy'
+    puts 'destroy post'
   end
 end
 
@@ -61,23 +61,24 @@ class CommentsController
 
   def index
     #puts 'index'
-    @comments.each { |comment| puts comment }
+    #@comments.each { |comment| puts comment }
+    puts 'index comments'
   end
 
   def show
-    puts 'show'
+    puts 'show comment'
   end
 
   def create
-    puts 'create'
+    puts 'create comment'
   end
 
   def update
-    puts 'update'
+    puts 'update comment'
   end
 
   def destroy
-    puts 'destroy'
+    puts 'destroy comment'
   end
 end
 
@@ -88,12 +89,14 @@ class Router
 
   def init
     resources(PostsController, 'posts')
-
+    resources(CommentsController, 'comments')
     loop do
       print 'Choose resource you want to interact (1 - Posts, 2 - Comments, q - Exit): '
       choise = gets.chomp
-
-      PostsController.connection(@routes['posts']) if choise == '1'
+      case choise
+      when '1' then PostsController.connection(@routes['posts'])
+      when '2' then CommentsController.connection(@routes['comments'])
+      end
       break if choise == 'q'
     end
 
