@@ -32,15 +32,25 @@ class PostsController
   end
 
   def index
-    puts 'index posts'
+    @posts.each do |post|
+      puts post
+    end
   end
 
   def show
-    puts 'show post'
+    puts "Please input post id:"
+    post_id = gets.chomp.to_i
+    if @posts.include?(post_id)
+      puts @posts[post_id]
+    else
+      puts "Post with id = #{post_id} not found"
+    end
   end
 
   def create
-    puts 'create post'
+    puts "Please input post id:"
+    post_id = gets.chomp.to_i
+    puts @posts[post_id]
   end
 
   def update
