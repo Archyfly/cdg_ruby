@@ -81,29 +81,50 @@ class CommentsController
   extend Resource
 
   def initialize
-    @comments = ['First comment', 'Second comment', 'Third comment', 'Fourth comment']]
+    @comments = ['First comment', 'Second comment', 'Third comment', 'Fourth comment']
   end
 
   def index
-    #puts 'index'
-    #@comments.each { |comment| puts comment }
-    puts 'index comments'
+    @comments.each do |comment|
+      puts comment
+    end
   end
 
   def show
-    puts 'show comment'
+    puts 'Please input comment id:'
+    comment_id = gets.chomp.to_i
+    if @comments[comment_id] != nil
+      puts @comments[comment_id]
+    else
+      puts 'Post not found'
+    end
   end
 
   def create
-    puts 'create comment'
+    puts 'Enter body of your comment:'
+    comment = gets.chomp
+    @comments.push(comment)
   end
 
   def update
-    puts 'update comment'
+    @comments.each_with_index do |comment, index|
+      puts "#{index} : #{comment}"
+    end
+    puts 'Please input comment id for update:'
+    comment_id = gets.chomp.to_i
+    puts 'Please input updated comment:'
+    comment_body = gets.chomp.to_str
+    @comments[comment_id] = comment_body
   end
 
   def destroy
-    puts 'destroy comment'
+    puts 'Please input comment id for DELETE:'
+    comment_id = gets.chomp.to_i
+    if @comments[comment_id] != nil
+      @comments.delete_at(comment_id)
+    else
+      puts 'Comment not found'
+    end
   end
 end
 
