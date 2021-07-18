@@ -8,6 +8,7 @@ module Resource
     loop do
       print 'Choose verb to interact with resources (GET/POST/PUT/DELETE) / q to exit: '
       verb = gets.chomp
+      
       break if verb == 'q'
 
       action = nil
@@ -80,7 +81,7 @@ class CommentsController
   extend Resource
 
   def initialize
-    @comments = []
+    @comments = ['First comment', 'Second comment', 'Third comment', 'Fourth comment']]
   end
 
   def index
