@@ -10,7 +10,7 @@ module Resource
     loop do
       print 'Choose verb to interact with resources (GET/POST/PUT/DELETE) / q to exit: '
       verb = gets.chomp
-      next if !VERBS.include?(verb)
+      next unless VERBS.include?(verb)
       
       break if verb == 'q'
 
