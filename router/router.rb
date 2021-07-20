@@ -1,4 +1,6 @@
 module Resource
+  VERBS = ['GET', 'POST', 'PUT', 'DELETE']
+
   def connection(routes)
     if routes.nil?
       puts "No route matches for #{self}"
@@ -8,6 +10,7 @@ module Resource
     loop do
       print 'Choose verb to interact with resources (GET/POST/PUT/DELETE) / q to exit: '
       verb = gets.chomp
+      next unless VERBS.include?(verb)
       
       break if verb == 'q'
 
@@ -68,11 +71,15 @@ class PostsController
   def destroy
     puts 'Please input post id for DELETE:'
     post_id = gets.chomp.to_i
-    if @posts[post_id] != nil
+    if check(post_id)
       @posts.delete_at(post_id)
     else
       puts 'Post not found'
     end
+  end
+
+  def check(post_id)
+    @posts.include?(@posts[post_id])
   end
 
 end
