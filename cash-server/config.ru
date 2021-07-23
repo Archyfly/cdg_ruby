@@ -8,18 +8,23 @@ class CashServer
   def call(env)
     cm = CashMachine.new
     req = Rack::Request.new(env)
-    resp = Rack::Response.new
-    case req.path
-    when /balance/
+    value = 0
+    if req.fullpath.include?('value=')
+      path, value = req.fullpath.split('?value=')
+      case path
+      when /withdraw/
+        [200, {"Content-Type" => "text/html"}, ["#{cm.withdraw(value.to_f)}"] ]
+      when /deposit/
+        [200, {"Content-Type" => "text/html"}, ["deposit"]]
+      end
+    elsif req.path_info == '/balance'
       [200, {"Content-Type" => "text/html"}, ["#{cm.balance}"] ]
-    when /withdraw/
-      [200, {"Content-Type" => "text/html"}, ["withdraw"] ]
-    when /deposit/
-      [200, {"Content-Type" => "text/html"}, ["deposit"]]
     else
-      [400, {"Content-Type" => "text/html"}, ["Not found"]]
+      [404, {"Content-Type" => "text/html"}, ["Not found, #{req.path_info}"]]
     end
-  end
+    end
+    resp = Rack::Response.new
+
 end
 
 run CashServer.new
