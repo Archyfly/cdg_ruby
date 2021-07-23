@@ -11,5 +11,6 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" scope="PROVIDED" name="rack (v2.2.3, ruby-2.5.1-p57) [gem]" level="application" />
   </component>
 </module>
