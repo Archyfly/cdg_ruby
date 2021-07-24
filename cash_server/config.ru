@@ -15,7 +15,7 @@ class CashServer
       when /withdraw/
         [200, {"Content-Type" => "text/html"}, ["#{cm.withdraw(value.to_f)}"] ]
       when /deposit/
-        [200, {"Content-Type" => "text/html"}, ["deposit"]]
+        [200, {"Content-Type" => "text/html"}, ["deposit now: #{cm.deposit(value.to_f)}"]]
       end
     elsif req.path_info == '/balance'
       [200, {"Content-Type" => "text/html"}, ["#{cm.balance}"] ]

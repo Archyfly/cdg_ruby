@@ -10,16 +10,14 @@ class CashMachine
 
   def withdraw(value)
     if check_balance(value)
-      @balance -= value
+      @balance = @balance - value
     else
       puts "Amount of withdraw exceeds current balance!"
     end
   end
 
-  def deposit
-    puts 'Enter deposit amount:'
-    amount = gets.chomp.to_f
-    @balance += amount
+  def deposit(value)
+    @balance = @balance + value
   end
 
   def check_balance(amount)
