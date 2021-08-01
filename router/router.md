@@ -14,7 +14,7 @@ class Router -
 "DELETE"=>#<Method: PostsController#destroy>}}>
 - получаем первое маршрутное соответствие МАРШРУТ <-> ACTION
 - аналогично, вызывая resources(CommentsController, 'comments') - получаем все маршруты для Comments.
-- 
+
 <h3>Пояснение использования extend.</h3><br>
 
 Расширяя за счет модуля Resource класс, например PostsController, получаем следующую картину:
