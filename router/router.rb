@@ -1,5 +1,5 @@
 module Resource
-  VERBS = ['GET', 'POST', 'PUT', 'DELETE']
+  VERBS = ['GET', 'POST', 'PUT', 'DELETE', 'q']
 
   def connection(routes)
     if routes.nil?
@@ -22,7 +22,8 @@ module Resource
         break if action == 'q'
       end
 
-
+      p routes[verb]
+      p routes[verb][action]
       action.nil? ? routes[verb].call : routes[verb][action].call
     end
   end
@@ -136,6 +137,8 @@ class CommentsController
 end
 
 class Router
+  attr_reader :routes
+
   def initialize
     @routes = {}
   end
@@ -170,7 +173,7 @@ class Router
   end
 end
 
-router = Router.new
+#router = Router.new
 
-router.init
+#router.init
 
