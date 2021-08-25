@@ -1,9 +1,10 @@
 require './cash_machine.rb'
 
 RSpec.describe CashMachine do
-  subject { CashMachine.new(100) }
+  subject { CashMachine.new(balance) }
 
   describe "#deposit" do
+    let(:balance) { 28 }
     let(:value) { 10 }
 
     it "increases balance" do
@@ -13,9 +14,18 @@ RSpec.describe CashMachine do
       puts subject.balance
       expect(subject.balance).to eq cashed_balance + value
     end
+
+    context "#when value is less then zero" do
+      let(:value) { -150 }
+
+      it "#raises exception" do
+        expect { subject.deposit(value) }.to raise_error 'Please input correct amount > 0'
+      end
+    end
   end
   
   describe "#withdraw" do
+    let(:balance) { 51 }
     let(:value) { 21 }
 
     it "decreases balance" do
@@ -23,5 +33,9 @@ RSpec.describe CashMachine do
       subject.withdraw(value)
       expect(subject.balance).to eq cashed_balance - value
     end
+
+    describe "#"
+
+
   end
 end
