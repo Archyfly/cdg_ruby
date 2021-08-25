@@ -34,8 +34,13 @@ RSpec.describe CashMachine do
       expect(subject.balance).to eq cashed_balance - value
     end
 
-    describe "#"
+    context "#when value more then deposit" do
+      let(:value) { 80 }
 
+      it "#raises exception" do
+        expect { subject.withdraw(value) }.to raise_error 'Amount of withdraw exceeds current balance!'
+      end
+    end
 
   end
 end
