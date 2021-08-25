@@ -1,21 +1,21 @@
 require './cash_machine.rb'
 
 RSpec.describe CashMachine do
-  subject { CashMachine.new }
+  subject { CashMachine.new(100) }
 
   describe "#deposit" do
-    let(:balance) { 100 }
     let(:value) { 10 }
 
     it "increases balance" do
       cashed_balance = subject.balance
+      puts cashed_balance
       subject.deposit(value)
+      puts subject.balance
       expect(subject.balance).to eq cashed_balance + value
     end
   end
-
+  
   describe "#withdraw" do
-    let(:balance) { 70 }
     let(:value) { 21 }
 
     it "decreases balance" do
